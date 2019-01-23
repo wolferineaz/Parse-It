@@ -7,7 +7,7 @@ function onRun(context) {
         }
 
         toString() {
-            return "\t<color name=\"" + this.name + "\">" + this.hex + "</color>\n";
+            return "\t<color name=\"" + this.name.replace(/-/g, "_") + "\">" + this.hex + "</color>\n";
         }
     }
 
