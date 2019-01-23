@@ -1,6 +1,9 @@
 # Parse-It 🚀
 Internal sketch plugin for Domopult project
 
+# Preview
+<img src="https://raw.githubusercontent.com/wolferineaz/Parse-It/master/parseit.gif">
+
 # Usage
 - Download ParseIt.sketchplugin folder to your computer
 - Double click on this folder to install plugin
