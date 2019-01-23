@@ -58,25 +58,27 @@ function onRun(context) {
     string = NSString.stringWithString(string)
     string = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
-
     // saveToClipboard(string);
     saveToFile(string);
 
     function hexColorForMSColor(color) {
+        const alpha = color.alpha();
         const red = color.red();
         const green = color.green();
         const blue = color.blue();
 
-        return hexColorForRGB(red, green, blue);
+        return hexColorForRGB(alpha, red, green, blue);
     }
 
-    function hexColorForRGB(red, green, blue) {
+    function hexColorForRGB(alpha, red, green, blue) {
         const hexMax = 255;
-        const redHex = (red * hexMax).toString(16).toLowerCase().slice(0, 2);
-        const greenHex = (green * hexMax).toString(16).toLowerCase().slice(0, 2);
-        const blueHex = (blue * hexMax).toString(16).toLowerCase().slice(0, 2);
+        
+        const alphaHex = pad(Math.floor(alpha * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
+        const redHex = pad(Math.floor(red * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
+        const greenHex = pad(Math.floor(green * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
+        const blueHex = pad(Math.floor(blue * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
 
-        return '#' + redHex + greenHex + blueHex;
+        return '#' + alphaHex + redHex + greenHex + blueHex;
     }
 
     function saveToFile(string) {
@@ -96,6 +98,12 @@ function onRun(context) {
         pasteBoard.clearContents();
         pasteBoard.setString_forType(string, NSStringPboardType);
         doc.showMessage("Colors have been copied to clipboard");
+    }
+
+    function pad(num, size) {
+        var s = num + "";
+        while (s.length < size) s = "0" + s;
+        return s;
     }
 
 }
