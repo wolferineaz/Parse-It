@@ -59,8 +59,8 @@ function onRun(context) {
     string = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
 
-    saveToClipboard(string);
-    // saveToFile(string);
+    // saveToClipboard(string);
+    saveToFile(string);
 
     function hexColorForMSColor(color) {
         const red = color.red();
@@ -82,7 +82,7 @@ function onRun(context) {
     function saveToFile(string) {
         var savePanel = NSSavePanel.savePanel();
         savePanel.allowedFileTypes = ["xml"];
-        savePanel.nameFieldStringValue = "domopult-color-palette-automatic.xml";
+        savePanel.nameFieldStringValue = doc.hudClientName() + "_color-palette-automatic.xml";
 
         var result = savePanel.runModal();
         if (result == NSFileHandlingPanelOKButton) {
