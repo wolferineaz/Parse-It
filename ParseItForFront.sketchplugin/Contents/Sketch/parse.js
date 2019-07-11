@@ -37,7 +37,7 @@ function onRun(context) {
         if (symbol.nodeName().startsWith("@color/")) {
             var name = symbol.layers().firstObject().nodeName();
             var fill = symbol.layers().firstObject().style().fills().firstObject();
-            var hex = fill ? hexColorForMSColor(fill.color()) : "#00000000";
+            var hex = fill ? hexColorForMSColor(fill.color()) : "rgba(0, 0, 0, 0)";
 
             colors.push(new XMLColor(name, hex));
         }
@@ -62,17 +62,16 @@ function onRun(context) {
     saveToFile(string);
 
     function hexColorForMSColor(color) {
-        const alpha = color.alpha();
-        const red = color.red();
-        const green = color.green();
-        const blue = color.blue();
-
-        return hexColorForRGB(alpha, red, green, blue);
+        const alpha = Number((color.alpha() * 100).toFixed(0));
+        const red = Number((color.red() * 256).toFixed(0));
+        const green = Number((color.green() * 256).toFixed(0));
+        const blue = Number((color.blue() * 256).toFixed(0));
+        return "rgba(" + red + ", " + green + ", " + blue + ", " + alpha + ")";
     }
 
     function hexColorForRGB(alpha, red, green, blue) {
         const hexMax = 255;
-        
+
         const alphaHex = pad(Math.floor(alpha * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
         const redHex = pad(Math.floor(red * hexMax).toString(16), 2).toLowerCase().slice(0, 2);
         const greenHex = pad(Math.floor(green * hexMax).toString(16), 2).toLowerCase().slice(0, 2);

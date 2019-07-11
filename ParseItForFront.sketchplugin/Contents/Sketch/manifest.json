@@ -1,7 +1,7 @@
 {
-    "name": "Domopult: Parse It To XML!",
-    "identifier": "az.wolferine.parseit",
-    "version": "1.0.4",
+    "name": "Domopult: Parse It To XML! (for front)",
+    "identifier": "az.wolferine.parseit.front",
+    "version": "1.0.5",
     "description": "Domopult: Parsing all colors starting with '@color/' on Symbols page to xml ⌘⌥L",
     "authorEmail": "tabriz94@gmail.com",
     "author": "Tabriz Dzhavadov",
@@ -9,7 +9,7 @@
         "script": "parse.js",
         "handler": "onRun",
         "shortcut": "cmd alt l",
-        "name": "🅿️ Parse It To XML!",
+        "name": "🅿️ Parse It To XML! (for front)",
         "identifier": "parse"
     }],
     "menu": {
